@@ -21,6 +21,7 @@ public class editor {
     private JFrame frame;
     private AtomicInteger atint = new AtomicInteger(0); // AtomicInteger für die aktuelle Folie in der Präsentation
 
+
     public static void main(String[] args) {
         new editor(); // Erstelle eine Instanz von editor
     }
@@ -32,8 +33,8 @@ public class editor {
         initGuiForEditor(frame);
         
         // Füge eine Standardfolie hinzu
-        folienDateien.add(new File("/home/jannis/Documents/Programme/Java Praesi/Inhalte/InhaltFolie0.txt"));
-        folienDateien.add(new File("/home/jannis/Documents/Programme/Java Praesi/Inhalte/UeberschriftFolie0.txt"));
+        folienDateien.add(new File("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/InhaltFolie0.txt"));
+        folienDateien.add(new File("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/UeberschriftFolie0.txt"));
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -83,9 +84,9 @@ public class editor {
         textfield1 = new JTextField(40);
         textfield2 = new JTextArea(18, 50);
         textfield2.setFont(new Font("Arial", Font.PLAIN, 30));
-        String ersterText = dateiAusleser.ladeDatei("/home/jannis/Documents/Programme/Java Praesi/Inhalte/UeberschriftFolie0.txt");
+        String ersterText = dateiAusleser.ladeDatei("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/UeberschriftFolie0.txt");
         textfield1.setText(ersterText);
-        String ersterInhalt = dateiAusleser.ladeDatei("/home/jannis/Documents/Programme/Java Praesi/Inhalte/InhaltFolie0.txt");
+        String ersterInhalt = dateiAusleser.ladeDatei("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/InhaltFolie0.txt");
         textfield2.setText(ersterInhalt);
         textfield2.setEditable(true);
         textfield1.setEditable(true);
@@ -155,8 +156,8 @@ public class editor {
             public void actionPerformed(final ActionEvent e) {
                 aktuelleFolie++;
                 frame.setTitle("Editor Folie "+ aktuelleFolie);
-                File neueFolie = new File("/home/jannis/Documents/Programme/Java Praesi/Inhalte/InhaltFolie" + aktuelleFolie + ".txt");
-                File neueFolieu = new File("/home/jannis/Documents/Programme/Java Praesi/Inhalte/UeberschriftFolie" + aktuelleFolie + ".txt");
+                File neueFolie = new File("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/InhaltFolie" + aktuelleFolie + ".txt");
+                File neueFolieu = new File("/home/jannis/Documents/Programme/Java_Praesi/Inhalte/UeberschriftFolie" + aktuelleFolie + ".txt");
                 folienDateien.add(neueFolie);
                 folienDateien.add(neueFolieu);
 
@@ -288,7 +289,7 @@ public class editor {
     }
     
     private void ladeAlleVorhandenenFolien() {
-        String folienPfad = "H:\\Desktop\\Praesi_by_Jannis";
+        String folienPfad = "/home/jannis/Documents/Java_Praesi/Inhalte/";
         File ordner = new File(folienPfad);
 
         if (!ordner.exists() || !ordner.isDirectory()) {
@@ -319,19 +320,20 @@ public class editor {
     	if (folienDateien.isEmpty()) {
     	    System.out.println("Keine Dateien gefunden. Erstelle Standard-Folien...");
     	    try {
-    	    	File debug = new File("H:\\Desktop\\Praesi_by_Jannis\\InhaltFolie1.txt");
-    	    	if(!debug.exists()) {
-    	        File standardInhalt = new File("H:\\Desktop\\Praesi_by_Jannis\\InhaltFolie0.txt");
-    	        File standardUeberschrift = new File("H:\\Desktop\\Praesi_by_Jannis\\UeberschriftFolie0.txt");
-    	    	
+    	    	File debug = new File("/home/jannis/Documents/Java_Praesi/Inhalte/InhaltFolie0.txt");
+    	    	if(!debug.exists()) { System.out.println("Debug geht nicht."); 
+                System.out.println("Dateien werden jetzt erstellt, oder es kommt eine exception.");
+    	        File standardInhalt = new File("/home/jannis/Documents/Java_Praesi/Inhalte/InhaltFolie0.txt");
+    	        File standardUeberschrift = new File("/home/jannis/Documents/Java_Praesi/Inhalte/UeberschriftFolie0.txt");
+        
     	        if (standardInhalt.createNewFile() && standardUeberschrift.createNewFile()) {
     	            folienDateien.add(standardInhalt);
     	            folienDateien.add(standardUeberschrift);
     	            System.out.println("Standard-Folien wurden erstellt.");
     	        }
-    	    	}
+        }
     	    } catch (IOException e) {
-    	    	System.err.println("Hat nicht geklappt. Zeile 332.");
+    	    	System.err.println("Hat nicht geklappt. Zeile 332."); 
     	        e.printStackTrace();
     	        
     	    }

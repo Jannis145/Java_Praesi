@@ -9,8 +9,8 @@ import javax.swing.JTextField;
 
 public class FileWriter {
     public void write(JTextField textfield1, JTextArea textfield2, int aktuelleFolie) throws IOException {
-        String pathfortext = "H:\\Desktop\\Praesi_by_Jannis\\InhaltFolie" + aktuelleFolie + ".txt";
-        String pathforueberschrift = "H:\\Desktop\\Praesi_by_Jannis\\UeberschriftFolie" + aktuelleFolie + ".txt";
+        String pathfortext = "/home/jannis/documents/Java_Praesi/Inhalte/InhaltFolie" + aktuelleFolie + ".txt";
+        String pathforueberschrift = "/home/jannis/documents/Java_Praesi/Inhalte/UeberschriftFolie" + aktuelleFolie + ".txt";
         String text1 = textfield1.getText();
         String text2 = "• " + textfield2.getText();
 
